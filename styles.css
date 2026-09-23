@@ -1,0 +1,105 @@
+/* Basic Reset and Setup */
+body {
+    background-color: #333; /* Dark background for the whole page */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace; /* Classic monospaced font */
+    overflow: hidden; /* Hide potential scrollbars */
+}
+
+/* --- Terminal Container --- */
+
+.terminal-container {
+    width: 90%;
+    max-width: 800px;
+    height: 60vh;
+    background-color: #111; /* Very dark background for the terminal screen */
+    color: #0F0; /* Classic neon green text color */
+    border: 1px solid #080; /* Subtle green border */
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Green glow effect */
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Terminal Header (The "window" bar) --- */
+
+.terminal-header {
+    background-color: #000;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #050;
+    user-select: none; /* Prevent selection of the title/controls */
+}
+
+.terminal-title {
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.terminal-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.control-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid #333;
+}
+
+.minimize { background-color: #ffbd4a; } /* Yellow */
+.maximize { background-color: #00ca4e; } /* Green */
+.close { background-color: #ff5f56; } /* Red */
+
+/* --- Terminal Body (The main content area) --- */
+
+.terminal-body {
+    padding: 15px;
+    flex-grow: 1; /* Makes the body take up the remaining space */
+    overflow-y: auto; /* Adds a scrollbar if content exceeds height */
+    font-size: 1em;
+}
+
+/* The <pre> tag is good for pre-formatted text like terminal output */
+.terminal-body pre {
+    margin: 0;
+    white-space: pre-wrap; /* Allows text to wrap */
+    word-break: break-all;
+    line-height: 1.4;
+    text-shadow: 0 0 3px rgba(0, 255, 0, 0.7); /* Subtle text glow */
+}
+
+/* --- Command Input Line --- */
+
+.input-line {
+    display: flex; /* Use flex to align the prompt and cursor */
+    gap: 5px;
+    margin-top: 10px;
+    /* Hide initially until the "typing" is done */
+    display: none; 
+}
+
+.prompt {
+    color: #AAA; /* Slightly different color for the prompt text */
+    flex-shrink: 0; /* Prevents the prompt from shrinking */
+}
+
+.cursor {
+    display: inline-block;
+    width: 8px;
+    height: 1em; /* Matches line height */
+    background-color: #0F0;
+    animation: blink 1s step-end infinite; /* The classic blinking cursor */
+}
+
+/* Cursor Blink Animation */
+@keyframes blink {
+    from, to { background-color: transparent }
+    50% { background-color: #0F0 }
+}
