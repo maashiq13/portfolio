@@ -361,6 +361,7 @@
                 <div class="text-md text-yellow-500 font-bold mb-3 border-b border-green-700 pb-1">HOME LAB & TECHNICAL PROJECTS</div>
 
                 <div class="space-y-3">
+                    <!-- Project 1: Single-Area OSPF -->
                     <div class="capability-block">
                         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1">
                             <h4 class="text-yellow-400 font-bold text-base flex items-center">
@@ -375,13 +376,38 @@
                         <p class="text-xs text-green-300 font-semibold mb-2">Technologies: Cisco IOS, OSPF Area 0, GNS3/EVE-ng, Wireshark, VPCS</p>
                         
                         <p class="text-sm text-gray-300 mb-2">
-                            Designed and deployed a 3-router linear OSPF Area 0 dynamic routing topology with edge VPCS subnets[cite: 3]. Configured manual Router IDs, verified dynamic routing tables, and performed live console debugging (<code class="text-yellow-400">debug ip ospf adj</code>) to analyze neighbor state transitions (Down &rarr; ExStart &rarr; Exchange &rarr; Loading &rarr; Full)[cite: 3].
+                            Designed and deployed a 3-router linear OSPF Area 0 dynamic routing topology with edge VPCS subnets[cite: 3]. Configured manual Router IDs, verified dynamic routing tables, and performed live console debugging (<code class="text-yellow-400">debug ip ospf adj</code>) to analyze neighbor state transitions[cite: 3].
                         </p>
 
                         <div class="text-xs text-gray-400 flex flex-wrap gap-2 mt-2">
                             <span class="bg-gray-800 text-green-400 px-2 py-0.5 rounded border border-green-900">Dynamic Routing</span>
                             <span class="bg-gray-800 text-yellow-400 px-2 py-0.5 rounded border border-yellow-900">Control Plane Verification</span>
                             <span class="bg-gray-800 text-blue-400 px-2 py-0.5 rounded border border-blue-900">State Machine Analysis</span>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: Multi-Area OSPF -->
+                    <div class="capability-block">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1">
+                            <h4 class="text-yellow-400 font-bold text-base flex items-center">
+                                <i class="fas fa-network-wired text-green-400 mr-2"></i> Multi-Area OSPF Routing Lab (5 Routers)
+                            </h4>
+                            <div class="text-xs">
+                                <a href="OSPF_Multi_Area.pdf" target="_blank" class="text-blue-400 hover:underline inline-flex items-center">
+                                    <i class="fas fa-file-pdf mr-1"></i> Read Full Report <i class="fas fa-external-link-alt text-[10px] ml-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <p class="text-xs text-green-300 font-semibold mb-2">Technologies: Cisco IOS, Multi-Area OSPF, Area Border Routers (ABRs), Type 3 LSAs, RCA Troubleshooting</p>
+                        
+                        <p class="text-sm text-gray-300 mb-2">
+                            Deployed a 5-router Multi-Area OSPF domain across Area 0 (Backbone), Area 1, and Area 2[cite: 1]. Identified and resolved an orphaned Area 3 misconfiguration by re-architecting link assignments to restore ABR status on R4 and validate Type 3 Summary LSA propagation[cite: 1].
+                        </p>
+
+                        <div class="text-xs text-gray-400 flex flex-wrap gap-2 mt-2">
+                            <span class="bg-gray-800 text-green-400 px-2 py-0.5 rounded border border-green-900">Multi-Area Architecture</span>
+                            <span class="bg-gray-800 text-yellow-400 px-2 py-0.5 rounded border border-yellow-900">ABR & Type 3 LSA Validation</span>
+                            <span class="bg-gray-800 text-red-400 px-2 py-0.5 rounded border border-red-900">Root Cause Analysis (RCA)</span>
                         </div>
                     </div>
                 </div>
