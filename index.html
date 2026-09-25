@@ -177,18 +177,9 @@
                 <span class="font-bold text-yellow-400">Skills</span>
             </button>
             
-            <!-- Projects Section Header -->
+            <!-- Clean Single Projects Button -->
             <button data-command="projects" class="gui-btn text-left p-2.5 rounded hover:bg-green-700/50 transition-colors duration-200 flex flex-col items-start">
-                <span class="font-bold text-yellow-400">Projects (All)</span>
-            </button>
-
-            <!-- Projects Sub-Buttons -->
-            <button data-command="projects-net" class="gui-btn text-left p-2.5 pl-5 rounded hover:bg-green-700/50 transition-colors duration-200 flex items-center text-xs">
-                <i class="fas fa-network-wired text-green-400 mr-2"></i><span class="text-gray-300">└─ Networking</span>
-            </button>
-
-            <button data-command="projects-sec" class="gui-btn text-left p-2.5 pl-5 rounded hover:bg-green-700/50 transition-colors duration-200 flex items-center text-xs">
-                <i class="fas fa-shield-alt text-red-400 mr-2"></i><span class="text-gray-300">└─ Security</span>
+                <span class="font-bold text-yellow-400">Projects</span>
             </button>
             
             <button data-command="education" class="gui-btn text-left p-2.5 rounded hover:bg-green-700/50 transition-colors duration-200 flex flex-col items-start">
@@ -225,6 +216,12 @@
 
         const commandHistory = [];
         let historyIndex = -1;
+
+        const validCommands = [
+            'help', 'profile', 'experience', 'skills', 
+            'projects', 'projects-net', 'projects-sec', 
+            'education', 'certs-block', 'value', 'clear', 'start'
+        ];
 
         const profileData = {
             name: "Aashiq Moosa",
@@ -680,6 +677,38 @@
         // Attach global handler for inline HTML buttons
         window.executeCommand = executeCommand;
 
+        function handleTabAutocomplete() {
+            const currentInput = commandInput.value.trim().toLowerCase();
+            
+            if (!currentInput) return;
+
+            // Find all commands starting with current input text
+            const matches = validCommands.filter(cmd => cmd.startsWith(currentInput));
+
+            if (matches.length === 1) {
+                // Single match -> complete directly
+                commandInput.value = matches[0];
+            } else if (matches.length > 1) {
+                // Multiple matches -> show suggestions in terminal like bash
+                appendToTerminal(`<div class="text-yellow-400 mt-2 text-sm">aashiq@desktop:~/portfolio$ ${commandInput.value}</div>`);
+                
+                const suggestionsList = matches.map(m => `<span class="text-green-400 font-bold mr-4">${m}</span>`).join('');
+                appendToTerminal(`<div class="p-2 bg-gray-900/60 rounded border border-gray-800 text-xs">${suggestionsList}</div>`);
+                
+                // Find longest common prefix among matches
+                let commonPrefix = matches[0];
+                for (let i = 1; i < matches.length; i++) {
+                    while (!matches[i].startsWith(commonPrefix)) {
+                        commonPrefix = commonPrefix.slice(0, -1);
+                    }
+                }
+                if (commonPrefix) {
+                    commandInput.value = commonPrefix;
+                }
+                terminalBody.scrollTop = terminalBody.scrollHeight;
+            }
+        }
+
         const placeholderText = 'Connection established. Use the quick menu or type \'help\'.';
         window.typingIndex = 0;
         const speed = 25; 
@@ -797,7 +826,10 @@
             resetToWelcome();
 
             commandInput.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
+                if (e.key === 'Tab') {
+                    e.preventDefault(); // Prevent changing focus to another element
+                    handleTabAutocomplete();
+                } else if (e.key === 'Enter') {
                     executeCommand(commandInput.value);
                 } else if (e.key === 'ArrowUp') {
                     e.preventDefault();
