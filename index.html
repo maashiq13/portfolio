@@ -242,7 +242,32 @@
                 <i class="fas fa-network-wired mr-2"></i> [ CATEGORY: NETWORKING INFRASTRUCTURE ]
             </div>
 
-            <!-- Project 1: Single-Area OSPF -->
+            <!-- Project 1: OSPF Passive Interface Hardening -->
+            <div class="capability-block mb-3">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1">
+                    <h4 class="text-yellow-400 font-bold text-base flex items-center">
+                        <i class="fas fa-user-shield text-green-400 mr-2"></i> OSPF Passive Interface Hardening & Optimization
+                    </h4>
+                    <div class="text-xs">
+                        <a href="OSPF_Passive.pdf" target="_blank" class="text-blue-400 hover:underline inline-flex items-center">
+                            <i class="fas fa-file-pdf mr-1"></i> Read Full Report <i class="fas fa-external-link-alt text-[10px] ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                <p class="text-xs text-green-300 font-semibold mb-2">Technologies: Cisco IOS, OSPF Area 0, Control Plane Security, GNS3, Wireshark Packet Analysis</p>
+                
+                <p class="text-sm text-gray-300 mb-2">
+                    Implemented control plane security hardening across a 3-router topology by suppressing multicast OSPF Hello packets (224.0.0.5) on host-facing subnets using <code class="text-yellow-400">passive-interface default</code>. Verified complete Hello suppression via live Wireshark captures while preserving full route table propagation and end-to-end ICMP reachability[cite: 8].
+                </p>
+
+                <div class="text-xs text-gray-400 flex flex-wrap gap-2 mt-2">
+                    <span class="bg-gray-800 text-green-400 px-2 py-0.5 rounded border border-green-900">Control Plane Hardening</span>
+                    <span class="bg-gray-800 text-yellow-400 px-2 py-0.5 rounded border border-yellow-900">Wireshark Telemetry</span>
+                    <span class="bg-gray-800 text-blue-400 px-2 py-0.5 rounded border border-blue-900">Routing Table Preservation</span>
+                </div>
+            </div>
+
+            <!-- Project 2: Single-Area OSPF -->
             <div class="capability-block mb-3">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1">
                     <h4 class="text-yellow-400 font-bold text-base flex items-center">
@@ -267,7 +292,7 @@
                 </div>
             </div>
 
-            <!-- Project 2: Multi-Area OSPF -->
+            <!-- Project 3: Multi-Area OSPF -->
             <div class="capability-block mb-3">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1">
                     <h4 class="text-yellow-400 font-bold text-base flex items-center">
@@ -298,7 +323,7 @@
                 <i class="fas fa-shield-alt mr-2"></i> [ CATEGORY: CYBERSECURITY & THREAT ANALYSIS ]
             </div>
 
-            <!-- Project 3: Research Paper / Collaborative Monitoring Stack -->
+            <!-- Project 4: Research Paper / Collaborative Monitoring Stack -->
             <div class="capability-block mb-3 border-red-900/60">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1">
                     <h4 class="text-yellow-400 font-bold text-base flex items-center">
