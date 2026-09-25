@@ -98,6 +98,24 @@
             border-bottom: 1px dashed rgba(0, 255, 0, 0.3);
             padding-bottom: 3px;
         }
+
+        /* Category Tab Buttons */
+        .filter-btn {
+            background-color: rgba(0, 128, 0, 0.2);
+            border: 1px solid #080;
+            color: #0F0;
+            padding: 2px 10px;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: #080;
+            color: #000;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-green-400 min-h-screen flex items-center justify-center p-4 terminal-font">
@@ -159,8 +177,18 @@
                 <span class="font-bold text-yellow-400">Skills</span>
             </button>
             
+            <!-- Projects Section Header -->
             <button data-command="projects" class="gui-btn text-left p-2.5 rounded hover:bg-green-700/50 transition-colors duration-200 flex flex-col items-start">
-                <span class="font-bold text-yellow-400">Projects</span>
+                <span class="font-bold text-yellow-400">Projects (All)</span>
+            </button>
+
+            <!-- Projects Sub-Buttons -->
+            <button data-command="projects-net" class="gui-btn text-left p-2.5 pl-5 rounded hover:bg-green-700/50 transition-colors duration-200 flex items-center text-xs">
+                <i class="fas fa-network-wired text-green-400 mr-2"></i><span class="text-gray-300">└─ Networking</span>
+            </button>
+
+            <button data-command="projects-sec" class="gui-btn text-left p-2.5 pl-5 rounded hover:bg-green-700/50 transition-colors duration-200 flex items-center text-xs">
+                <i class="fas fa-shield-alt text-red-400 mr-2"></i><span class="text-gray-300">└─ Security</span>
             </button>
             
             <button data-command="education" class="gui-btn text-left p-2.5 rounded hover:bg-green-700/50 transition-colors duration-200 flex flex-col items-start">
@@ -212,6 +240,96 @@
             `<span class="skill-tag ${colorClass}">${tag}</span>`
         ).join('');
 
+        const networkProjectsHTML = `
+            <div class="text-xs font-bold text-green-400 mb-2 mt-1 flex items-center">
+                <i class="fas fa-network-wired mr-2"></i> [ CATEGORY: NETWORKING INFRASTRUCTURE ]
+            </div>
+
+            <!-- Project 1: Single-Area OSPF -->
+            <div class="capability-block mb-3">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1">
+                    <h4 class="text-yellow-400 font-bold text-base flex items-center">
+                        <i class="fas fa-route text-green-400 mr-2"></i> Single-Area OSPF Routing Lab (3 Routers / 2 PCs)
+                    </h4>
+                    <div class="text-xs">
+                        <a href="OSPF_Report.pdf" target="_blank" class="text-blue-400 hover:underline inline-flex items-center">
+                            <i class="fas fa-file-pdf mr-1"></i> Read Full Report <i class="fas fa-external-link-alt text-[10px] ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                <p class="text-xs text-green-300 font-semibold mb-2">Technologies: Cisco IOS, OSPF Area 0, GNS3/EVE-ng, Wireshark, VPCS</p>
+                
+                <p class="text-sm text-gray-300 mb-2">
+                    Designed and deployed a 3-router linear OSPF Area 0 dynamic routing topology with edge VPCS subnets[cite: 3]. Configured manual Router IDs, verified dynamic routing tables, and performed live console debugging (<code class="text-yellow-400">debug ip ospf adj</code>) to analyze neighbor state transitions[cite: 3].
+                </p>
+
+                <div class="text-xs text-gray-400 flex flex-wrap gap-2 mt-2">
+                    <span class="bg-gray-800 text-green-400 px-2 py-0.5 rounded border border-green-900">Dynamic Routing</span>
+                    <span class="bg-gray-800 text-yellow-400 px-2 py-0.5 rounded border border-yellow-900">Control Plane Verification</span>
+                    <span class="bg-gray-800 text-blue-400 px-2 py-0.5 rounded border border-blue-900">State Machine Analysis</span>
+                </div>
+            </div>
+
+            <!-- Project 2: Multi-Area OSPF -->
+            <div class="capability-block mb-3">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1">
+                    <h4 class="text-yellow-400 font-bold text-base flex items-center">
+                        <i class="fas fa-sitemap text-green-400 mr-2"></i> Multi-Area OSPF Routing Lab (5 Routers)
+                    </h4>
+                    <div class="text-xs">
+                        <a href="OSPF_Multi_Area.pdf" target="_blank" class="text-blue-400 hover:underline inline-flex items-center">
+                            <i class="fas fa-file-pdf mr-1"></i> Read Full Report <i class="fas fa-external-link-alt text-[10px] ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                <p class="text-xs text-green-300 font-semibold mb-2">Technologies: Cisco IOS, Multi-Area OSPF, Area Border Routers (ABRs), Type 3 LSAs, RCA Troubleshooting</p>
+                
+                <p class="text-sm text-gray-300 mb-2">
+                    Deployed a 5-router Multi-Area OSPF domain across Area 0 (Backbone), Area 1, and Area 2[cite: 1]. Identified and resolved an orphaned Area 3 misconfiguration by re-architecting link assignments to restore ABR status on R4 and validate Type 3 Summary LSA propagation[cite: 1].
+                </p>
+
+                <div class="text-xs text-gray-400 flex flex-wrap gap-2 mt-2">
+                    <span class="bg-gray-800 text-green-400 px-2 py-0.5 rounded border border-green-900">Multi-Area Architecture</span>
+                    <span class="bg-gray-800 text-yellow-400 px-2 py-0.5 rounded border border-yellow-900">ABR & Type 3 LSA Validation</span>
+                    <span class="bg-gray-800 text-red-400 px-2 py-0.5 rounded border border-red-900">Root Cause Analysis (RCA)</span>
+                </div>
+            </div>
+        `;
+
+        const securityProjectsHTML = `
+            <div class="text-xs font-bold text-red-400 mb-2 mt-2 flex items-center">
+                <i class="fas fa-shield-alt mr-2"></i> [ CATEGORY: CYBERSECURITY & THREAT ANALYSIS ]
+            </div>
+
+            <!-- Project 3: Research Paper / Collaborative Monitoring Stack -->
+            <div class="capability-block mb-3 border-red-900/60">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1">
+                    <h4 class="text-yellow-400 font-bold text-base flex items-center">
+                        <i class="fas fa-bug text-red-400 mr-2"></i> Detection & Analysis of DDoS via Collaborative Network Monitoring
+                    </h4>
+                    <div class="text-xs flex items-center space-x-3">
+                        <a href="Detecting_and_Analysis_of_DDoS__Attack_using_a_Collaborative_Network_Monitoring_Stack.pdf" target="_blank" class="text-blue-400 hover:underline inline-flex items-center">
+                            <i class="fas fa-file-pdf mr-1"></i> Read Paper <i class="fas fa-external-link-alt text-[10px] ml-1"></i>
+                        </a>
+                        <a href="https://ieeexplore.ieee.org/document/10474700" target="_blank" class="text-yellow-400 hover:underline inline-flex items-center">
+                            <i class="fas fa-award text-yellow-500 mr-1"></i> IEEE Xplore <i class="fas fa-external-link-alt text-[10px] ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                <p class="text-xs text-red-300 font-semibold mb-2">Technologies: Prometheus, Zabbix, Grafana, GNS3, InfluxDB, Machine Learning, SNMP, Linux</p>
+                
+                <p class="text-sm text-gray-300 mb-2">
+                    Architected and evaluated a cost-effective collaborative network monitoring stack deployed on GNS3[cite: 5]. Integrated Prometheus and Zabbix telemetry streams into a unified Grafana dashboard to establish real-time baseline visibility, detect performance surges, and identify active DDoS attack vectors[cite: 5].
+                </p>
+
+                <div class="text-xs text-gray-400 flex flex-wrap gap-2 mt-2">
+                    <span class="bg-gray-800 text-red-400 px-2 py-0.5 rounded border border-red-900">DDoS Detection</span>
+                    <span class="bg-gray-800 text-yellow-400 px-2 py-0.5 rounded border border-yellow-900">Real-Time Telemetry</span>
+                    <span class="bg-gray-800 text-blue-400 px-2 py-0.5 rounded border border-blue-900">Unified Monitoring Stack</span>
+                </div>
+            </div>
+        `;
+
         const sections = {
             'help': `
                 <div class="text-green-300 mb-2 font-bold">Available Commands:</div>
@@ -219,7 +337,9 @@
                     <div><span class="text-yellow-400 font-bold">profile</span> <span class="text-gray-400">// Summary & Contact Info</span></div>
                     <div><span class="text-yellow-400 font-bold">experience</span> <span class="text-gray-400">// Role-Based Experience View</span></div>
                     <div><span class="text-yellow-400 font-bold">skills</span> <span class="text-gray-400">// Toolset Tag View</span></div>
-                    <div><span class="text-yellow-400 font-bold">projects</span> <span class="text-gray-400">// Home Lab & Technical Projects</span></div>
+                    <div><span class="text-yellow-400 font-bold">projects</span> <span class="text-gray-400">// View All Technical Projects</span></div>
+                    <div><span class="text-yellow-400 font-bold">projects-net</span> <span class="text-gray-400">// Filter Networking Projects</span></div>
+                    <div><span class="text-yellow-400 font-bold">projects-sec</span> <span class="text-gray-400">// Filter Security Projects</span></div>
                     <div><span class="text-yellow-400 font-bold">education</span> <span class="text-gray-400">// Academic Background</span></div>
                     <div><span class="text-yellow-400 font-bold">certs-block</span> <span class="text-gray-400">// Professional Credentials</span></div>
                     <div><span class="text-yellow-400 font-bold">value</span> <span class="text-gray-400">// Core value proposition</span></div>
@@ -358,58 +478,47 @@
                 </div>
             `,
             'projects': `
-                <div class="text-md text-yellow-500 font-bold mb-3 border-b border-green-700 pb-1">HOME LAB & TECHNICAL PROJECTS</div>
+                <div class="text-md text-yellow-500 font-bold mb-2 border-b border-green-700 pb-1">TECHNICAL PROJECTS GRID</div>
+                
+                <!-- Category Filter Buttons inside Terminal -->
+                <div class="flex space-x-2 my-2 border-b border-gray-800 pb-2">
+                    <span class="text-xs text-gray-400 self-center">Filter Domain:</span>
+                    <button onclick="window.executeCommand('projects')" class="filter-btn active">[ ALL ]</button>
+                    <button onclick="window.executeCommand('projects-net')" class="filter-btn">[ NETWORKING ]</button>
+                    <button onclick="window.executeCommand('projects-sec')" class="filter-btn">[ SECURITY ]</button>
+                </div>
 
                 <div class="space-y-3">
-                    <!-- Project 1: Single-Area OSPF -->
-                    <div class="capability-block">
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1">
-                            <h4 class="text-yellow-400 font-bold text-base flex items-center">
-                                <i class="fas fa-route text-green-400 mr-2"></i> Single-Area OSPF Routing Lab (3 Routers / 2 PCs)
-                            </h4>
-                            <div class="text-xs">
-                                <a href="OSPF_Report.pdf" target="_blank" class="text-blue-400 hover:underline inline-flex items-center">
-                                    <i class="fas fa-file-pdf mr-1"></i> Read Full Report <i class="fas fa-external-link-alt text-[10px] ml-1"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <p class="text-xs text-green-300 font-semibold mb-2">Technologies: Cisco IOS, OSPF Area 0, GNS3/EVE-ng, Wireshark, VPCS</p>
-                        
-                        <p class="text-sm text-gray-300 mb-2">
-                            Designed and deployed a 3-router linear OSPF Area 0 dynamic routing topology with edge VPCS subnets[cite: 3]. Configured manual Router IDs, verified dynamic routing tables, and performed live console debugging (<code class="text-yellow-400">debug ip ospf adj</code>) to analyze neighbor state transitions[cite: 3].
-                        </p>
+                    ${networkProjectsHTML}
+                    ${securityProjectsHTML}
+                </div>
+            `,
+            'projects-net': `
+                <div class="text-md text-yellow-500 font-bold mb-2 border-b border-green-700 pb-1">TECHNICAL PROJECTS GRID</div>
+                
+                <div class="flex space-x-2 my-2 border-b border-gray-800 pb-2">
+                    <span class="text-xs text-gray-400 self-center">Filter Domain:</span>
+                    <button onclick="window.executeCommand('projects')" class="filter-btn">[ ALL ]</button>
+                    <button onclick="window.executeCommand('projects-net')" class="filter-btn active">[ NETWORKING ]</button>
+                    <button onclick="window.executeCommand('projects-sec')" class="filter-btn">[ SECURITY ]</button>
+                </div>
 
-                        <div class="text-xs text-gray-400 flex flex-wrap gap-2 mt-2">
-                            <span class="bg-gray-800 text-green-400 px-2 py-0.5 rounded border border-green-900">Dynamic Routing</span>
-                            <span class="bg-gray-800 text-yellow-400 px-2 py-0.5 rounded border border-yellow-900">Control Plane Verification</span>
-                            <span class="bg-gray-800 text-blue-400 px-2 py-0.5 rounded border border-blue-900">State Machine Analysis</span>
-                        </div>
-                    </div>
+                <div class="space-y-3">
+                    ${networkProjectsHTML}
+                </div>
+            `,
+            'projects-sec': `
+                <div class="text-md text-yellow-500 font-bold mb-2 border-b border-green-700 pb-1">TECHNICAL PROJECTS GRID</div>
+                
+                <div class="flex space-x-2 my-2 border-b border-gray-800 pb-2">
+                    <span class="text-xs text-gray-400 self-center">Filter Domain:</span>
+                    <button onclick="window.executeCommand('projects')" class="filter-btn">[ ALL ]</button>
+                    <button onclick="window.executeCommand('projects-net')" class="filter-btn">[ NETWORKING ]</button>
+                    <button onclick="window.executeCommand('projects-sec')" class="filter-btn active">[ SECURITY ]</button>
+                </div>
 
-                    <!-- Project 2: Multi-Area OSPF -->
-                    <div class="capability-block">
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1">
-                            <h4 class="text-yellow-400 font-bold text-base flex items-center">
-                                <i class="fas fa-network-wired text-green-400 mr-2"></i> Multi-Area OSPF Routing Lab (5 Routers)
-                            </h4>
-                            <div class="text-xs">
-                                <a href="OSPF_Multi_Area.pdf" target="_blank" class="text-blue-400 hover:underline inline-flex items-center">
-                                    <i class="fas fa-file-pdf mr-1"></i> Read Full Report <i class="fas fa-external-link-alt text-[10px] ml-1"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <p class="text-xs text-green-300 font-semibold mb-2">Technologies: Cisco IOS, Multi-Area OSPF, Area Border Routers (ABRs), Type 3 LSAs, RCA Troubleshooting</p>
-                        
-                        <p class="text-sm text-gray-300 mb-2">
-                            Deployed a 5-router Multi-Area OSPF domain across Area 0 (Backbone), Area 1, and Area 2[cite: 1]. Identified and resolved an orphaned Area 3 misconfiguration by re-architecting link assignments to restore ABR status on R4 and validate Type 3 Summary LSA propagation[cite: 1].
-                        </p>
-
-                        <div class="text-xs text-gray-400 flex flex-wrap gap-2 mt-2">
-                            <span class="bg-gray-800 text-green-400 px-2 py-0.5 rounded border border-green-900">Multi-Area Architecture</span>
-                            <span class="bg-gray-800 text-yellow-400 px-2 py-0.5 rounded border border-yellow-900">ABR & Type 3 LSA Validation</span>
-                            <span class="bg-gray-800 text-red-400 px-2 py-0.5 rounded border border-red-900">Root Cause Analysis (RCA)</span>
-                        </div>
-                    </div>
+                <div class="space-y-3">
+                    ${securityProjectsHTML}
                 </div>
             `,
             'education': `
@@ -567,6 +676,9 @@
 
             commandInput.value = '';
         }
+
+        // Attach global handler for inline HTML buttons
+        window.executeCommand = executeCommand;
 
         const placeholderText = 'Connection established. Use the quick menu or type \'help\'.';
         window.typingIndex = 0;
