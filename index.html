@@ -257,7 +257,7 @@
                 <p class="text-xs text-green-300 font-semibold mb-2">Technologies: Cisco IOS, OSPF Area 0, Control Plane Security, GNS3, Wireshark Packet Analysis</p>
                 
                 <p class="text-sm text-gray-300 mb-2">
-                    Implemented control plane security hardening across a 3-router topology by suppressing multicast OSPF Hello packets (224.0.0.5) on host-facing subnets using <code class="text-yellow-400">passive-interface default</code>. Verified complete Hello suppression via live Wireshark captures while preserving full route table propagation and end-to-end ICMP reachability[cite: 8].
+                    Implemented control plane security hardening across a 3-router topology by suppressing multicast OSPF Hello packets (224.0.0.5) on host-facing subnets using <code class="text-yellow-400">passive-interface default</code>. Verified complete Hello suppression via live Wireshark captures while preserving full route table propagation and end-to-end ICMP reachability.
                 </p>
 
                 <div class="text-xs text-gray-400 flex flex-wrap gap-2 mt-2">
@@ -323,7 +323,32 @@
                 <i class="fas fa-shield-alt mr-2"></i> [ CATEGORY: CYBERSECURITY & THREAT ANALYSIS ]
             </div>
 
-            <!-- Project 4: Research Paper / Collaborative Monitoring Stack -->
+            <!-- Project 4: Cisco ASAv Firewall & Security Zones Lab -->
+            <div class="capability-block mb-3 border-red-900/60">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1">
+                    <h4 class="text-yellow-400 font-bold text-base flex items-center">
+                        <i class="fas fa-fire text-red-400 mr-2"></i> Cisco ASAv Firewall & Security Zones Lab
+                    </h4>
+                    <div class="text-xs">
+                        <a href="ASA_projects.pdf" target="_blank" class="text-blue-400 hover:underline inline-flex items-center">
+                            <i class="fas fa-file-pdf mr-1"></i> Read Full Report <i class="fas fa-external-link-alt text-[10px] ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+                <p class="text-xs text-red-300 font-semibold mb-2">Technologies: Cisco ASAv 9.8.1, Dynamic NAT, Layer 2 VLANs, DMZ Segmentation, HTTP Audit</p>
+                
+                <p class="text-sm text-gray-300 mb-2">
+                    Configured and validated a Cisco ASAv firewall architecture establishing three discrete security zones: Inside (Level 100), DMZ (Level 50), and Outside (Level 0)[cite: 7]. Implemented Layer 2 switch port VLAN isolation (VLAN 100 Inside, VLAN 200 DMZ), configured object-based Dynamic NAT for outbound internet translation, and verified HTTP/application access across perimeter zones[cite: 7].
+                </p>
+
+                <div class="text-xs text-gray-400 flex flex-wrap gap-2 mt-2">
+                    <span class="bg-gray-800 text-red-400 px-2 py-0.5 rounded border border-red-900">Firewall Security Zones</span>
+                    <span class="bg-gray-800 text-yellow-400 px-2 py-0.5 rounded border border-yellow-900">Dynamic NAT</span>
+                    <span class="bg-gray-800 text-blue-400 px-2 py-0.5 rounded border border-blue-900">DMZ Architecture</span>
+                </div>
+            </div>
+
+            <!-- Project 5: Research Paper / Collaborative Monitoring Stack -->
             <div class="capability-block mb-3 border-red-900/60">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-1">
                     <h4 class="text-yellow-400 font-bold text-base flex items-center">
